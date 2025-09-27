@@ -77,6 +77,7 @@ public class Pigs2Dice {
     }
     public static void printAverage(ArrayList<Integer> rollsTracker, String playername) {
         int totalRolls = rollsTracker.stream().mapToInt(Integer::intValue).sum();
+        //syntax sugar ^^ for the boys
         double average = rollsTracker.size() > 0 ? (double) totalRolls / rollsTracker.size() : 0.0;
         System.out.println("\nStatistics:" + playername);
         System.out.println("Total rolls: " + totalRolls);
