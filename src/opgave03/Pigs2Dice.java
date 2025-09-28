@@ -12,6 +12,10 @@ public class Pigs2Dice {
     public static ArrayList<Integer> player1AveragePerTurn = new ArrayList<>();
     public static ArrayList<Integer> player2AveragePerTurn = new ArrayList<>();
     public static final int WINNING_SCORE = 100;
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_GREEN = "\u001B[32m";
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -22,12 +26,12 @@ public class Pigs2Dice {
         while (!gameOver) {
             player1Score = playerTurn(scanner, RollTwoDices, player1Score, "Player 1", player1AveragePerTurn);
             if (player1Score >= WINNING_SCORE) {
-                System.out.println("Player 1 wins!");
+                System.out.println(ANSI_GREEN + "Player 1 wins!" + ANSI_RESET);
                 break;
             }
             player2Score = playerTurn(scanner, RollTwoDices, player2Score, "Player 2", player2AveragePerTurn);
             if (player2Score >= WINNING_SCORE) {
-                System.out.println("Player 2 wins!");
+                System.out.println(ANSI_GREEN + "Player 2 wins!" + ANSI_RESET);
                 break;
             }
         }
@@ -53,13 +57,13 @@ public class Pigs2Dice {
             rollsThisTurn++;
             System.out.println("You rolled: " + face[0] + " and " + face[1]);
             if (face[0] == 1 && face[1] == 1) {
-                System.out.println("Rolled two 1s! Score reset to 0.");
+                System.out.println(ANSI_RED + "Rolled two 1s! Score reset to 0." + ANSI_RESET);
                 score = 0;
                 temp = 0;
                 rollsTracker.add(rollsThisTurn);
                 break;
             } else if (face[0] == 1 || face[1] == 1) {
-                System.out.println("You rolled a singular 1. No points this turn.");
+                System.out.println(ANSI_YELLOW + "You rolled a singular 1. No points this turn." + ANSI_RESET);
                 temp = 0;
                 rollsTracker.add(rollsThisTurn);
                 break;
