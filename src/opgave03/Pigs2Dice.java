@@ -47,6 +47,14 @@ public class Pigs2Dice {
         while (true) {
             System.out.print("Roll the die? (yes/no): ");
             String answer = scanner.nextLine();
+            try {
+                if (!answer.equalsIgnoreCase("yes") && !answer.equalsIgnoreCase("no")) {
+                    throw new IllegalArgumentException("Invalid input. Please enter 'yes' or 'no'.");
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
             if (answer.equalsIgnoreCase("no")) {
                 score += temp;
                 System.out.println(playerName + " holds. Total score: " + score);
@@ -57,7 +65,7 @@ public class Pigs2Dice {
             rollsThisTurn++;
             System.out.println("You rolled: " + face[0] + " and " + face[1]);
             if (face[0] == 1 && face[1] == 1) {
-                System.out.println(ANSI_RED + "Rolled two 1s! Score reset to 0." + ANSI_RESET);
+                System.out.println(ANSI_RED + "Rolled two 1s! Score reset to 0." + ANSI_RESET + "\uD83D\uDCA3");
                 score = 0;
                 temp = 0;
                 rollsTracker.add(rollsThisTurn);
